@@ -1,4 +1,6 @@
+#include <iostream>
 #include <bits/stdc++.h>
+#include <fstream>
 
 using namespace std;
 
@@ -43,12 +45,22 @@ void SearchPattern(string text, string pattern, vector<int> &occurances_pos) {
 
 int main() {
     vector<int> v;
-    string text = "THIS IS A TEST TEXT WHICH IS A TEST";
-    string pattern = "TEST";
+    string text;
+    string pattern="gcaact";
+
+    ifstream MyReadFile("C:\\Users\\Sukumar Ganesan\\Desktop\\BoyerMoore\\DNA.txt");
+    string myText;
+    while (getline (MyReadFile, myText)) {
+        myText.erase(myText.size()-2);
+        text+=myText;
+    }
+
     SearchPattern(text, pattern, v);
     for(int i=0;i<v.size();i++)
     {
         cout<<"Occurance at position : "<<v[i]<<endl;
     }
+    cout<<"Total occurances of the pattern is : "<<v.size()<<endl;
+    MyReadFile.close();
     return 0;
 }
